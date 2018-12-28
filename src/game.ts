@@ -1,4 +1,4 @@
-// custom component to handle opening and closing doors
+// Custom component to handle wheel spinning
 @Component('wheelSpin')
 export class WheelSpin {
   active: boolean = false
@@ -6,17 +6,19 @@ export class WheelSpin {
   speed: number = 30
 }
 
-// a group to keep track of all entities with a WheelSpin component
+// This group keeps track of all entities with a WheelSpin component
 const wheels = engine.getComponentGroup(WheelSpin)
 
-// a system to carry out the rotation
+// This system carries out the rotation on each frame
 export class RotatorSystem implements ISystem {
  
   update(dt: number) {
-    // iterate over the doors in the component group
+    // iterate over the wheels in the component group
     for (let wheel of wheels.entities) {
+      // handy shortcuts
       let spin = wheel.get(WheelSpin)
       let transform = wheel.get(Transform)
+      // spin the wheel
       if (spin.active){
         transform.rotate(spin.direction, spin.speed * dt)
       }
@@ -28,7 +30,7 @@ export class RotatorSystem implements ISystem {
 engine.addSystem(new RotatorSystem())
 
 
-// Wheels
+// Create wheels
 let wheel1 = new Entity()
 wheel1.set(new CylinderShape())
 wheel1.get(CylinderShape).withCollisions = true
@@ -57,10 +59,11 @@ SpiralMaterial.albedoTexture = "materials/hypno-wheel.png"
 wheel1.set(SpiralMaterial)
 wheel2.set(SpiralMaterial)
 
-// add custom component
+// Add the custom component to the wheels
 wheel1.set(new WheelSpin())
-wheel1.get(WheelSpin).direction = Vector3.Up()
 wheel2.set(new WheelSpin())
+
+// Change the direction for wheel2 (wheel1 is left with the default direction `Up`)
 wheel2.get(WheelSpin).direction = Vector3.Down()
 
 // Set the click behavior for the wheels
@@ -69,9 +72,10 @@ wheel1.set(
     let spin = wheel1.get(WheelSpin)
     if (!spin.active){
       spin.active = true
-    } else{
+    } else {
       spin.speed += 20
     }
+    //log("speed: ", spin.speed)
   })
 )
 
@@ -80,9 +84,10 @@ wheel2.set(
     let spin = wheel2.get(WheelSpin)
     if (!spin.active){
       spin.active = true
-    } else{
+    } else {
       spin.speed += 30
     }
+    //log("speed: ", spin.speed)
   })
 )
 
