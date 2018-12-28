@@ -2,8 +2,8 @@
 @Component('wheelSpin')
 export class WheelSpin {
   active: boolean = false
-  direction: Vector3 = Vector3.Up()
   speed: number = 30
+  direction: Vector3 = Vector3.Up()
 }
 
 // This group keeps track of all entities with a WheelSpin component
@@ -18,8 +18,9 @@ export class RotatorSystem implements ISystem {
       // handy shortcuts
       let spin = wheel.get(WheelSpin)
       let transform = wheel.get(Transform)
-      // spin the wheel
+      // check state
       if (spin.active){
+        // spin the wheel
         transform.rotate(spin.direction, spin.speed * dt)
       }
     }
@@ -51,7 +52,7 @@ wheel2.set(new Transform({
 }))
 engine.addEntity(wheel2)
 
-// Material
+// Create material
 let SpiralMaterial = new Material()
 SpiralMaterial.albedoTexture = "materials/hypno-wheel.png"
 
