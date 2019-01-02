@@ -31,13 +31,21 @@ export class RotatorSystem implements ISystem {
 engine.addSystem(new RotatorSystem())
 
 
+// Background scenery
+let stage = new Entity()
+stage.set(new GLTFShape("models/Theatre.gltf"))
+stage.set(new Transform({
+  position: new Vector3(5, 0, 5)
+}))
+engine.addEntity(stage)
+
 // Create wheels
 let wheel1 = new Entity()
 wheel1.set(new CylinderShape())
 wheel1.get(CylinderShape).withCollisions = true
 wheel1.set(new Transform({
-  position: new Vector3(2, 1, 4),
-  rotation: Quaternion.Euler(90, 0, 0),
+  position: new Vector3(7, 1, 3),
+  rotation: Quaternion.Euler(90, 90, 0),
   scale: new Vector3(1, 0.05, 1)
 }))
 engine.addEntity(wheel1)
@@ -46,8 +54,8 @@ let wheel2 = new Entity()
 wheel2.set(new CylinderShape())
 wheel2.get(CylinderShape).withCollisions = true
 wheel2.set(new Transform({
-  position: new Vector3(6, 1, 4),
-  rotation: Quaternion.Euler(90, 0, 0),
+  position: new Vector3(7, 1, 7),
+  rotation: Quaternion.Euler(90, 90, 0),
   scale: new Vector3(1, 0.05, 1)
 }))
 engine.addEntity(wheel2)
