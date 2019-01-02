@@ -35,7 +35,8 @@ engine.addSystem(new RotatorSystem())
 let stage = new Entity()
 stage.set(new GLTFShape("models/Theatre.gltf"))
 stage.set(new Transform({
-  position: new Vector3(5, 0, 5)
+  position: new Vector3(5, 0, 5),
+  rotation: Quaternion.Euler(0, 90, 0)
 }))
 engine.addEntity(stage)
 
@@ -44,8 +45,8 @@ let wheel1 = new Entity()
 wheel1.set(new CylinderShape())
 wheel1.get(CylinderShape).withCollisions = true
 wheel1.set(new Transform({
-  position: new Vector3(4, 2, 3),
-  rotation: Quaternion.Euler(90, 90, 0),
+  position: new Vector3(3, 2, 6),
+  rotation: Quaternion.Euler(90, 0, 0),
   scale: new Vector3(1, 0.05, 1)
 }))
 engine.addEntity(wheel1)
@@ -54,8 +55,8 @@ let wheel2 = new Entity()
 wheel2.set(new CylinderShape())
 wheel2.get(CylinderShape).withCollisions = true
 wheel2.set(new Transform({
-  position: new Vector3(4, 2, 7),
-  rotation: Quaternion.Euler(90, 90, 0),
+  position: new Vector3(7, 2, 6),
+  rotation: Quaternion.Euler(90, 0, 0),
   scale: new Vector3(1, 0.05, 1)
 }))
 engine.addEntity(wheel2)
