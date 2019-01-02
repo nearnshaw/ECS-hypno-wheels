@@ -44,7 +44,7 @@ let wheel1 = new Entity()
 wheel1.set(new CylinderShape())
 wheel1.get(CylinderShape).withCollisions = true
 wheel1.set(new Transform({
-  position: new Vector3(7, 1, 3),
+  position: new Vector3(4, 2, 3),
   rotation: Quaternion.Euler(90, 90, 0),
   scale: new Vector3(1, 0.05, 1)
 }))
@@ -54,7 +54,7 @@ let wheel2 = new Entity()
 wheel2.set(new CylinderShape())
 wheel2.get(CylinderShape).withCollisions = true
 wheel2.set(new Transform({
-  position: new Vector3(7, 1, 7),
+  position: new Vector3(4, 2, 7),
   rotation: Quaternion.Euler(90, 90, 0),
   scale: new Vector3(1, 0.05, 1)
 }))
